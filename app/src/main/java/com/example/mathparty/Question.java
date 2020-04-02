@@ -25,12 +25,24 @@ public class Question {
 
         this.upperLimit = upperLimit;
         Random randomNumberMaker = new Random();
-        this.firstNumber = randomNumberMaker.nextInt(upperLimit);
-        this.secondNumber = randomNumberMaker.nextInt(upperLimit);
-        //division
-        this.answer = this.firstNumber + this.secondNumber;
-        this.questionPhrase = firstNumber + " + " + secondNumber + " = ";
-        //
+        //+1 so we avoid 0 division
+        this.firstNumber = randomNumberMaker.nextInt(upperLimit) + 1;
+        this.secondNumber = randomNumberMaker.nextInt(upperLimit) + 1;
+
+        if (new Random().nextInt(4) == 0) {
+            this.answer = this.firstNumber + this.secondNumber;
+            this.questionPhrase = firstNumber + " + " + secondNumber + " = ";
+        } else if (new Random().nextInt(4) == 1) {
+            this.answer = this.firstNumber - this.secondNumber;
+            this.questionPhrase = firstNumber + " - " + secondNumber + " = ";
+        } else if (new Random().nextInt(4) == 3) {
+            this.answer = this.firstNumber / this.secondNumber;
+            this.questionPhrase = firstNumber + " / " + secondNumber + " = ";
+        } else {
+            this.answer = this.firstNumber * this.secondNumber;
+            this.questionPhrase = firstNumber + " * " + secondNumber + " = ";
+        }
+
         this.answerPosition = randomNumberMaker.nextInt(4);
         this.answerArray = new int[]{0, 1, 2, 3};
         this.answerArray[0] = answer + 1;
